@@ -1,9 +1,19 @@
 <script type="text/javascript" src="static/js/timer.js"></script>
 {%	for a in collection %}
 <h2>{{ a.title }}</h2>
-<p>{{ a.published }}</p>
-<p> {{ a.summary_detail['value'].split('<img')[0] }}</p>
-<p><a href="{{ a.link }}" target="_blank">Read More</a></p>
+<p> {{ a.published }} </p>
+<p> 
+
+	{% if a.summary.split(".")[0].split("<p>")[1] == null %}
+	{{ a.summary.split(".")[0] }}
+	{% endif %}
+
+	{% if a.summary.split(".")[0].split("<p>")[1] != "" %}
+	{{ a.summary.split(".")[0].split("<p>")[1] }}
+	{% endif %}
+
+
+.</p>
+<p> <a href="{{ a.link }}" target="_blank">Read More</a></p>
 <hr>
 {% endfor %}
-

@@ -22,13 +22,14 @@ def make_request():
 		d1 = d = feedparser.parse('http://feeds.hindustantimes.com/HT-IndiaSectionPage-Topstories')
 		secs = secs - 5
 	return d1
-
+	
 @app.route('/')
 def index():
 	global secs
 	x = make_request()
 	threading.Timer(secs, index).start()
 	return render_template('index.html',collection = x.entries)
+	
 
 #Run server
 if __name__ == '__main__' :
