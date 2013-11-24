@@ -1,4 +1,46 @@
 <script type="text/javascript" src="static/js/timer.js"></script>
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>News Miner</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="static/css/gumby.css">
+	<script src="static/js/libs/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body>
+
+<div class="row">
+	</div>
+<br>
+	<div class="navcontain">
+		<div class="pretty navbar" gumby-fixed="top" id="nav3">
+			<div class="row">
+				<a class="toggle" gumby-trigger="#nav3 > .row > ul" href="#"><i class="icon-menu"></i></a>
+				<h3 class="four columns logo">
+    <a href="#">
+      <font color="#fff">NEWS PARSER</font>
+    </a>
+  </h3>
+				<ul class="eight columns">
+					<li><a href="#">About</a></li>
+					<li>
+						<a href="#">Developers</a>
+					</li>
+					<li><a href="#">Backend</a></li>
+
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+
+
+
+<div class="row">
+
 {%	for a in collection %}
 <h2>{{ a.title }}</h2>
 <p> {{ a.published }} </p>
@@ -14,9 +56,6 @@
 <hr>
 {% endfor %}
 
-<hr>
-<h1> Indian Express News Section </h1>
-<hr>
 
 {%	for a in collection2 %}
 <h2>{{ a.title }}</h2>
@@ -33,10 +72,6 @@
 <hr>
 {% endfor %}
 
-<hr>
-<h1> Zee News </h1>
-<hr>
-
 {%	for a in collection3 %}
 <h2>{{ a.title }}</h2>
 <p> {{ a.published }} </p>
@@ -51,3 +86,36 @@
 <p> <a href="{{ a.link }}" target="_blank">Read More</a></p>
 <hr>
 {% endfor %}
+
+</div>
+
+
+
+
+<script>
+	var oldieCheck = Boolean(document.getElementsByTagName('html')[0].className.match(/\soldie\s/g));
+	if(!oldieCheck) {
+	document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"><\/script>');
+	} else {
+	document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"><\/script>');
+	}
+	</script>
+	<script>
+	if(!window.jQuery) {
+	if(!oldieCheck) {
+	  document.write('<script src="static/js/libs/jquery-2.0.2.min.js"><\/script>');
+	} else {
+	  document.write('<script src="static/js/libs/jquery-1.10.1.min.js"><\/script>');
+	}
+	}
+	</script>
+
+	<script gumby-touch="js/libs" src="static/js/libs/gumby.js"></script>
+	<script src="static/js/libs/ui/gumby.fixed.js"></script>
+	<script src="static/js/libs/ui/gumby.skiplink.js"></script>
+	<script src="static/js/libs/ui/gumby.navbar.js"></script>
+	<script src="static/js/libs/gumby.init.js"></script>
+	<script src="static/js/smain.js"></script>
+  </body>
+</html>
+
