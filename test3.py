@@ -6,10 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'shivam bansal'
 
 #first parsing
-dht = feedparser.parse('http://feeds.hindustantimes.com/HT-IndiaSectionPage-Topstories')
-dzn = feedparser.parse('http://zeenews.india.com/rss/india-national-news.xml')
-die = feedparser.parse('http://syndication.indianexpress.com/rss/latest-news.xml')
-
+d = feedparser.parse('http://syndication.indianexpress.com/rss/latest-news.xml')
 secs = 120
 
 def normal():
@@ -27,11 +24,8 @@ def make_request():
 	global d
 	global secs
 	interval = secs/10
-	x = feedparser.parse('http://feeds.hindustantimes.com/HT-IndiaSectionPage-Topstories', etag=dht.etag)
-	y = feedparser.parse('http://zeenews.india.com/rss/india-national-news.xml', etag=dzn.etag)
-	z = feedparser.parse('http://syndication.indianexpress.com/rss/latest-news.xml', etag=die.etag)
-
-	if x.status == 304 or y.status == 304 or z.status == 304:
+	x = feedparser.parse('http://feeds.hindustantimes.com/HT-IndiaSectionPage-Topstories', etag=d.etag)
+	if x.status == 304:
 		#not changed, increase the interval
 		d1 = x
 		secs = secs + interval
@@ -52,7 +46,7 @@ def make_request():
 def index():
 	global secs
 	threading.Timer(secs, make_request).start()
-	return render_template('index.html', collection = dht.entries, collection2 = die.entries, collection3 = dzn.entries)
+	return render_template('index.html',collection = d.entries)
 	
 #Run server
 if __name__ == '__main__' :
